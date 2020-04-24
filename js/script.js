@@ -24,12 +24,12 @@ new Vue({
     data: () => ({
         // La ruta de las imágenes. Puede ser relativa o absoluta
         imagenes: [
-            "./img/cabra.jpg",
-            "./img/conejo.jpg",
-            "./img/leon.jpg",
-            "./img/oveja.jpg",
-            "./img/perro.jpg",
-            "./img/gato.jpg",
+            "https://i.pinimg.com/originals/2f/1e/44/2f1e4499fa598cde619d150f9602975d.jpg",
+            "https://t2.up.ltmcdn.com/es/images/0/1/8/historia_resumida_de_moises_2810_600.jpg",
+            "https://en-la-biblia.com/wp-content/uploads/2018/04/gedeon.png",
+            "https://i2.wp.com/elradio.es/wp-content/uploads/2015/01/619_conversion_pablo.jpg",
+            "https://i.ytimg.com/vi/xBwePg0p9S8/hqdefault.jpg",
+            "https://www.elversiculodeldia.com/wp-content/uploads/2014/09/Abraham.jpg",
         ],
         memorama: [],
         // Útiles para saber cuál fue la carta anteriormente seleccionada
