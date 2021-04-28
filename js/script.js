@@ -84,12 +84,12 @@ new Vue({
         async pedirNombre(){
            
            await Swal.fire({
-  input: 'name',
+  input: 'text',
   inputLabel: 'Ingresa tu nombre',
   inputPlaceholder: 'Nombre'
 }).then((res) => {
-   if(res.value.name){
-       return res.value.name
+   if(res.value.text){
+       return res.value.text
    } else {
        this.pedirNombre()
    }
