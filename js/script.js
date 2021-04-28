@@ -81,25 +81,18 @@ new Vue({
                 .then(this.reiniciarJuego)
                 fetch(`https://7b00a2befb15.ngrok.io/lose?${name}`)
         },
-        pedirNombre(){
-            console.log('a')
-            Swal.fire({title: 'Usuario', html: `<p class="h4">Escribe tu usuario</p>
-                    <input class="swal2-input" type="text" id="name">
-                `,
-            confirmButtonText: 'Guardar',
-            focusConfirm: false,
-            allowOutsideClick: false,
-            allowEscapeKey: false,
-              preConfirm: () => {
-    const login = Swal.getPopup().querySelector('#name').value
-   
-    if (login != "" && !login && login != "undefined" || login != undefined) {
-      Swal.showValidationMessage(`Por favor, ingresa tu nombre`)
-    }
-    return { name: name }
-  }
-        }).then((result) => {
-  name = result.name
+        async pedirNombre(){
+           
+           await Swal.fire({
+  input: 'name',
+  inputLabel: 'Ingresa tu nombre',
+  inputPlaceholder: 'Nombre'
+}).then((res) => {
+   if(res.value.name){
+       return res.value.name
+   } else {
+       this.pedirNombre()
+   }
 })
         },
         // Mostrar alerta de victoria y reiniciar juego
@@ -261,6 +254,6 @@ new Vue({
     },
     mounted() {
         this.precargarImagenes();
-        this.pedirNombre();
+        name = this.pedirNombre();
     },
 });
