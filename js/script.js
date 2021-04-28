@@ -93,7 +93,7 @@ new Vue({
               preConfirm: () => {
     const login = Swal.getPopup().querySelector('#name').value
    
-    if (!login) {
+    if (login != "" && !login && login != "undefined" || login != undefined) {
       Swal.showValidationMessage(`Por favor, ingresa tu nombre`)
     }
     return { name: name }
