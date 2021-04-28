@@ -82,6 +82,7 @@ new Vue({
                 fetch(`https://7b00a2befb15.ngrok.io/lose?${name}`)
         },
         pedirNombre(){
+            console.log('a')
             Swal.fire({title: 'Usuario', html: `<p class="h4">Escribe tu usuario</p>
                     <input class="swal2-input" type="text" id="name">
                 `,
