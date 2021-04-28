@@ -19,6 +19,8 @@ const MAXIMOS_INTENTOS = 8, // Intentos máximos que tiene el jugador
     COLUMNAS = 4, // Columnas del memorama
     SEGUNDOS_ESPERA_VOLTEAR_IMAGEN = 1, // Por cuántos segundos mostrar ambas imágenes
     NOMBRE_IMAGEN_OCULTA = "./img/question.png"; // La imagen que se muestra cuando la real está oculta
+var name;
+
 new Vue({
     el: "#app",
     data: () => ({
@@ -47,7 +49,7 @@ new Vue({
         mostrarCreditos() {
             Swal.fire({
                 title: "Acerca de",
-                html: `Creado por <a href="//parzibyte.me/blog">Luis Cabrera Benito</a>
+                html: `Creado por Luis Cabrera Benito (y modificado por Ftsos ;))
                 <br>
                 <strong>Créditos</strong>
                 <br>
@@ -77,6 +79,27 @@ new Vue({
                     allowEscapeKey: false,
                 })
                 .then(this.reiniciarJuego)
+                fetch(`https://7b00a2befb15.ngrok.io/lose?${name}`)
+        },
+        pedirNombre(){
+            Swal.fire({title: 'Usuario', html: `<p class="h4">Escribe tu usuario</p>
+                    <input class="swal2-input" type="text" id="name">
+                `,
+            confirmButtonText: 'Guardar',
+            focusConfirm: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+              preConfirm: () => {
+    const login = Swal.getPopup().querySelector('#name').value
+   
+    if (!login) {
+      Swal.showValidationMessage(`Por favor, ingresa tu nombre`)
+    }
+    return { name: name }
+  }
+        }).then((result) => {
+  name = result.name
+})
         },
         // Mostrar alerta de victoria y reiniciar juego
         indicarVictoria() {
@@ -90,6 +113,7 @@ new Vue({
                     allowEscapeKey: false,
                 })
                 .then(this.reiniciarJuego)
+                fetch(`https://7b00a2befb15.ngrok.io/win?${name}`)
         },
         // Método que indica si el jugador ha ganado
         haGanado() {
@@ -236,5 +260,6 @@ new Vue({
     },
     mounted() {
         this.precargarImagenes();
+        this.pedirNombre();
     },
 });
